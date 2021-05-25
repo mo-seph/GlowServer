@@ -14,6 +14,11 @@ listener 1883
 protocol mqtt
 `
 - on the browser side, use the MQTT library: https://github.com/mqttjs/MQTT.js/#browser
+
+- example test command:
+`
+mosquitto_pub -t leds/commands -h localhost -m '{"update":0, "data":{"r":0.0,"g":0.9,"b":0.0,"w":0.0}}'
+`
 '''
 
 
@@ -24,7 +29,7 @@ import serial
 # The callback function of connection
 def on_connect(client, userdata, flags, rc):
     print(f"Connected with result code {rc}")
-    client.subscribe("leds")
+    client.subscribe("leds/commands")
 
 # The callback function for received message
 def mk_serial(port="/dev/cu.usbmodem54473601"):
