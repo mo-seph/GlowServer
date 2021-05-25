@@ -1,3 +1,4 @@
 pyserial
 paho-mqtt
 pyserial-asyncio
+asyncio_mqtt

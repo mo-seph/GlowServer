@@ -76,5 +76,7 @@ async def main(port='/dev/cu.usbmodem54473601'):
     reader, writer = await serial_asyncio.open_serial_connection(url=port)
     #boo = asyncio.create_task(mqtt_listener() )
     await asyncio.wait([serial_listener(reader,writer,port=port),listen_for_mqtt(writer)])
-
-asyncio.run(main())
+port = '/dev/cu.usbmodem54473601'
+if len(sys.argv) > 1:
+    port = sys.argv[1]
+asyncio.run(main(port))
